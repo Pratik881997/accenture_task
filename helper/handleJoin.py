@@ -1,32 +1,49 @@
 import pandas as pd
+from flask import jsonify
 
-class handleJoin:
-    def __int__(self, left_dataframe_data, right_dataframe_data, join_type, join_key):
+
+class HandleJoin:
+    def __init__(self, left_dataframe_data, right_dataframe_data, join_type, join_key):
         self.left_dataframe = pd.DataFrame(left_dataframe_data['data'])
         self.right_dataframe = pd.DataFrame(right_dataframe_data['data'])
         self.join_type = join_type
-        self.join_key = join_key
+        self.join_keys = join_key
+        self.possible_joins = {'leftJoin': 'left',
+                               'rightJoin': 'right',
+                               'innerJoin': 'inner',
+                               'fullOuterJoin': 'outer',
+                               'crossJoin': 'cross'
+                               }
 
+    def _validate_join_type(self):
+        if self.join_type in self.possible_joins.keys():
+            return True
+        else:
+            return False
 
-    private
+    def _get_lkeys_rkeys(self):
+        l_keys = []
+        r_keys = []
+        for keys_data in self.join_keys:
+            l_keys.append(keys_data['leftKey'])
+            r_keys.append(keys_data['rightKey'])
+        return l_keys, r_keys
+
     # possible types leftJoin, innerJoin, fullOuterJoin, rightJoin
     def dataframe_join(self):
-        possible_joins = {'leftJoin': 'left',
-                          'rightJoin': 'right',
-                          'innerJoin': 'inner',
-                          'outerJoin': 'outer',
-                          'crossJoin': 'cross'
-                          }
+        if self._validate_join_type():
+            if len(self.join_keys) >= 1:
+                left_keys, right_keys = self._get_lkeys_rkeys()
 
-        if join_type in possible_joins.keys():
-            df_joined = left_dataframe_df.merge(right_dataframe_df, on=["column1", "column2"],
-                                                how=possible_joins[join_type])
+                df_joined = self.left_dataframe.merge(self.right_dataframe,
+                                                      left_on=left_keys,
+                                                      right_on= right_keys,
+                                                      how=self.possible_joins[self.join_type])
 
-            return jsonify(joinTypeError="Invalid Join Type, please choose valid Join type"), 200
+                df_joined_dict = df_joined.to_dict()
+                return jsonify(data=df_joined_dict), 200
+
+            else:
+                return jsonify(joinTypeError="please pass atleast 1 join key"), 401
         else:
-            return jsonify(joinTypeError="Invalid Join Type, please choose valid Join type"), 200
-        # multiple joining keys are possible, in this example there  are 2 joining keys,
-        # number of possible elements in ‘joiningKeys’ array is >= 1
-
-        current_user = get_jwt_identity()
-        return jsonify(logged_in_as=current_user), 200
+            return jsonify(joinTypeError="Invalid Join Type, please choose valid Join type"), 401
