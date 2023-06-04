@@ -26,11 +26,12 @@ def login():
     username = request.json.get('username')
     password = request.json.get('password')
 
-    # Validate the credentials (e.g., check against a database)
+    # Validate the credentials, passing static right now but need to replace with database validation logic
     try:
         if username == 'admin' and password == 'PasswordBarrier':
             # Create a new access token
             access_token = create_access_token(identity=username)
+            # returning access token
             return jsonify(access_token=access_token), 200
         else:
             return jsonify({'error': 'Invalid username or password'}), 401
@@ -47,12 +48,14 @@ def join_dataframes():
     join_type = request.json.get('joinType')
     joining_keys = request.json.get('joiningKeys')
 
+    # creating object of HandleJoin class
     handle_join = HandleJoin(left_dataframe_data, right_dataframe_data, join_type, joining_keys)
 
+    # return the output of API
     return handle_join.dataframe_join()
 
 
-
 if __name__ == '__main__':
+    # run APP with the config declared in constants.ini file
     app.run(debug=config.getboolean('APP', 'DEBUG'),
             port=int(config.get('APP', 'PORT')))
