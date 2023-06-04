@@ -1,0 +1,26 @@
+{
+    "leftDataframe": {
+        "data":  {"column1": [1,2,3,4,5],
+                  "column2": ["a1", "a2", "a3", "a4", "a5"],
+                  "column3": ["d1_a1", "d1_a2", "d1_a3", "d1_a4", "d1_a5"],
+                  "column4": ["d1_b1", "d1_b2", "d1_b3", "d1_b4", "d1_b5"]
+                }
+    },
+    "rightDataframe": {
+        "data":  {"column1": [1,2,3,4,5],
+                  "column2": ["a1", "a2", "a3", "a4", "a5"],
+                  "column3": ["d2_a1", "d2_a2", "d2_a3", "d2_a4", "d2_a5"],
+                  "column4": ["d2_b1", "d2_b2", "d2_b3", "d2_b4", "d2_b5"]
+                }
+    },
+    "joinType": "leftJoin",
+    "joiningKeys": [{
+        "leftKey":"column1",
+        "rightKey":"column6"
+        },
+        {
+        "leftKey":"column2",
+        "rightKey":"column3"
+        }
+    ]
+}
