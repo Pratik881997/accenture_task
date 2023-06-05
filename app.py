@@ -18,6 +18,7 @@ config.read(args.config)
 
 # configuring JWT token for access management in flask
 app.config['JWT_SECRET_KEY'] = config.get('APP', 'SECRET_KEY')
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = 3600 # session time out is 1 hour
 jwt = JWTManager(app)
 
 
