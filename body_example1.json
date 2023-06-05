@@ -1,26 +1,98 @@
 {
     "leftDataframe": {
-        "data":  {"column1": [1,2,3,4,5],
-                  "column2": ["a1", "a2", "a3", "a4", "a5"],
-                  "column3": ["d1_a1", "d1_a2", "d1_a3", "d1_a4", "d1_a5"],
-                  "column4": ["d1_b1", "d1_b2", "d1_b3", "d1_b4", "d1_b5"]
-                }
+        "data": [
+            {
+                "d1_column1": 1,
+                "d1_column2": "a1",
+                "d1_column3": "d1_a1",
+                "d1_column4": "d1_b1"
+            },
+            {
+                "d1_column1": 2,
+                "d1_column2": "a2",
+                "d1_column3": "d1_a2",
+                "d1_column4": "d1_b2"
+            },
+            {
+                "d1_column1": 3,
+                "d1_column2": "a3",
+                "d1_column3": "d1_a3",
+                "d1_column4": "d1_b3"
+            },
+            {
+                "d1_column1": 4,
+                "d1_column2": "a4",
+                "d1_column3": "d1_a4",
+                "d1_column4": "d1_b4"
+            },
+            {
+                "d1_column1": 5,
+                "d1_column2": "a5",
+                "d1_column3": "d1_a5",
+                "d1_column4": "d1_b5"
+            },
+            {
+                "d1_column1": 6,
+                "d1_column2": "a6",
+                "d1_column3": "d1_a6",
+                "d1_column4": "d1_b6"
+            },
+            {
+                "d1_column1": 7,
+                "d1_column2": "a7",
+                "d1_column3": "d1_a7",
+                "d1_column4": "d1_b7"
+            },
+            {
+                "d1_column1": 8,
+                "d1_column2": "a8",
+                "d1_column3": "d1_a8",
+                "d1_column4": "d1_b8"
+            }
+        ]
     },
     "rightDataframe": {
-        "data":  {"column1": [1,2,3,4,5],
-                  "column2": ["a1", "a2", "a3", "a4", "a5"],
-                  "column3": ["d2_a1", "d2_a2", "d2_a3", "d2_a4", "d2_a5"],
-                  "column4": ["d2_b1", "d2_b2", "d2_b3", "d2_b4", "d2_b5"]
-                }
+        "data": [
+            {
+                "d2_column1": 1.0,
+                "d2_column2": "a1",
+                "d2_column3": "d2_a1",
+                "d2_column4": "d2_b1"
+            },
+            {
+                "d2_column1": 2.0,
+                "d2_column2": "a2",
+                "d2_column3": "d2_a2",
+                "d2_column4": "d2_b2"
+            },
+            {
+                "d2_column1": 3.0,
+                "d2_column2": "a3",
+                "d2_column3": "d2_a3",
+                "d2_column4": "d2_b3"
+            },
+            {
+                "d2_column1": 4.0,
+                "d2_column2": "a4",
+                "d2_column3": "d2_a4",
+                "d2_column4": "d2_b4"
+            },
+            {
+                "d2_column1": 5.0,
+                "d2_column2": "a5",
+                "d2_column3": "d2_a5",
+                "d2_column4": "d2_b5"
+            }
+        ]
     },
-    "joinType": "leftJoin",
+    "joinType": "fullOuterJoin",
     "joiningKeys": [{
-        "leftKey":"column1",
-        "rightKey":"column6"
+        "leftKey":"d1_column1",
+        "rightKey":"d2_column1"
         },
         {
-        "leftKey":"column2",
-        "rightKey":"column3"
+        "leftKey":"d1_column2",
+        "rightKey":"d2_column2"
         }
     ]
 }
