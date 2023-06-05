@@ -42,7 +42,6 @@ class HandleJoin:
                     validate_left_keys = set(left_keys).issubset(set(self.left_dataframe.columns))
                     validate_right_keys = set(right_keys).issubset(set(self.right_dataframe.columns))
 
-                    print(self.possible_joins[self.join_type])
                     if validate_left_keys and validate_right_keys:
                         df_joined = self.left_dataframe.merge(self.right_dataframe,
                                                               left_on=left_keys,
